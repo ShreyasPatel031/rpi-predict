@@ -37,7 +37,19 @@ We used the implementation provided in the XGBoost Python library which is optim
 # Evaluation Metrics
 We have used the following metrics to assess the performance of the method. Where, TP is true positives, TN is true negatives, FP is false positives, and FN stands for false negatives.
 <p align="center">
-
+  <img src = "Images/Eval.png" width = "60%">
+</p>
+<p align="center">
+  Scores without BLAST allignment 
+</p>
+<p align="center">
+  <img src = "Images/Before.png" width = "80%">
+</p>
+<p align="center">
+  Scores without BLAST allignment
+</p>
+<p align="center">
+  <img src = "Images/After.png" width = "60%">
 </p>
 
 
