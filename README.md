@@ -39,12 +39,14 @@ We have used the following metrics to assess the performance of the method. Wher
 <p align="center">
   <img src = "Images/Eval.png" width = "60%">
 </p>
+<p>&nbsp;</p>
 <p align="center">
   Scores without BLAST allignment 
 </p>
 <p align="center">
   <img src = "Images/Before.png" width = "80%">
 </p>
+<p>&nbsp;</p>
 <p align="center">
   Scores without BLAST allignment
 </p>
