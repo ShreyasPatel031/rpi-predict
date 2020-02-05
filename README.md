@@ -1,7 +1,8 @@
 # rpi-predict
-A data driven model for RNA Protein Interaction ( RPI ) prediction using the BLAST sequencing tool and a gradient boosting classifier.
+
 
 <p align="center">
+  A data driven model for RNA Protein Interaction prediction using the BLAST sequencing tool and a gradient boosting  classifier.</br></br>
   <img width="460" height="300" src="https://us.123rf.com/450wm/polesnoy/polesnoy1910/polesnoy191000082/134022367-dna-chain-abstract-scientific-background-beautiful-illustraion-biotechnology-biochemistry-genetics-a.jpg?ver=6">
 </p>
 
@@ -16,13 +17,27 @@ The features have been generated using the standard k-mer representation. The am
 </p>
 <p>&nbsp;</p>
 
-# Negative
+# Negative dataset
 As a negative dataset consists of pairs of RNA Protein that will not interact we need to create a negative dataset based on a set of assumptions. The process used for the creation was to take every possible combination of an RNA and protein in the positive dataset and reduce the sample size based on a set of assumptions:
 1. Pairs found in the positive dataset were removed from the set.
 2. Every pair left is taken. For a given set of an RNA paired with a protein, a database is formed using a **BLAST Command Line Tool** of all the proteins the RNA is paired with in the positive dataset and the current paired protein is queried against the database. If the query finds any hit ( for the default E-value = 1 ) the given pair of RNA and protein is disregarded. The same is preformed in the reverse order( Protein with RNA database ).
-3. Every RNA is queried against a database of all the other RNAs. The result is a list of values of how similar each RNA is to its other RNAs in the dataset based on their BLAST Scores. The same is performed for proteins.
+3. Every RNA is queried against a database of all the other RNAs. The result is a list of values of how similar each RNA is to its other RNAs in the dataset based on their BLAST scores. The same is performed for proteins.
 <p align="center">
-  <img width="90%"  src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-018-27814-2/MediaObjects/41598_2018_27814_Fig1_HTML.jpg?as=webp">
+  <img width="40%"  src="Images/self_r.png">
+  <img width="40%"  src="Images/self_p.png">
 </p>
+The above graphs indicates the the no of RNA and proteins above a particular BLAST score. As we want to maximize the diversity of the data we have, we only remove the the RNA and proteins with an excessively high BLAST score. The scores were manually set to 500 for protein and 3000 for RNA.<br/>
+4. From the remainig pairs a random subsample was taken of length equal to the positive dataset.
 <p>&nbsp;</p>
+
+# XGBoost Classifier
+We used the implementation provided in the XGBoost Python library which is optimized for distributed systems. The XGBoost model was trained using 200 estimators and a learning rate (η) of 0.25 with each tree having a maximum depth of eight. The L1 regularization parameter was set using cross-validation to 1.12 and the L2 regularization parameter was set to 18.51 before training. The sub-sample ratio was set to 0.9 and the loss function to be optimized was the “binary:logistic” function, otherwise known as the log-loss function, which is well suited for binary classification tasks. Parameter optimization and evaluation of the models is done using 10-fold nested cross-validation.
+<p>&nbsp;</p>
+
+# Evaluation Metrics
+We have used the following metrics to assess the performance of the method. Where, TP is true positives, TN is true negatives, FP is false positives, and FN stands for false negatives.
+<p align="center">
+
+</p>
+
 
