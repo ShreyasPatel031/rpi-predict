@@ -48,7 +48,7 @@ We have used the following metrics to assess the performance of the method. Wher
 </p>
 <p>&nbsp;</p>
 <p align="center">
-  Scores without BLAST allignment
+  Scores with BLAST allignment
 </p>
 <p align="center">
   <img src = "Images/After.png" width = "60%">
